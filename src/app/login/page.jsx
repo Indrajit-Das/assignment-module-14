@@ -48,8 +48,8 @@ const Login = () => {
      
       const res = await response.json();
       if(res['status']===true){
-        // router.replace(callbackurl);
-        redirect(callbackurl);
+        router.replace(callbackurl);
+        // redirect(callbackurl);
       }else{
         alert(res['message']);
       }
