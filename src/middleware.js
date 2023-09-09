@@ -19,7 +19,7 @@ export async function middleware(req,res,next){
                 request:{ headers:reqHeaders}
             });    
         }catch(error){
-            return NextResponse.redirect(new URL('/login',req.url))
+            return NextResponse.redirect(new URL('/login'));
         }
         
     }
@@ -28,7 +28,7 @@ export async function middleware(req,res,next){
        
         const encodedToken = req?.cookies?.get('token');
         if(encodedToken){
-            return NextResponse.redirect(new URL('/dashboard',req.url));
+            return NextResponse.redirect(new URL('/dashboard'));
         }else{
             return NextResponse.next();
         }
