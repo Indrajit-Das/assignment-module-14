@@ -23,7 +23,8 @@ export async function middleware(req,res,next){
         }
         
     }
-    if(req.nextUrl.pathname.startsWith('/login')){
+    // checking if authenticated
+    if(req.nextUrl.pathname.startsWith('/login'||'/register'||'/')){
         try{
             const encodedToken = req.cookies.get('token');
             if(encodedToken){
