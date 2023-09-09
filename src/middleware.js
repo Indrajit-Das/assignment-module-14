@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { decodeToken } from './lib/token';
 
 
-export async function middleware(req,res,next){
+export async function middleware(req,res){
     if(req.nextUrl.pathname.startsWith('/dashboard')){
         try{
             // token verification
@@ -24,14 +24,12 @@ export async function middleware(req,res,next){
         
     }
     // checking if authenticated
-    if((req.nextUrl.pathname.startsWith('/login'))||(req.nextUrl.pathname.startsWith('/register')||(req.nextUrl.pathname.startsWith('/')))){
+    // if((req.nextUrl.pathname.startsWith('/login'))||(req.nextUrl.pathname.startsWith('/register'))||(req.nextUrl.pathname.startsWith('/'))){
        
-        const encodedToken = req?.cookies?.get('token');
-        if(encodedToken){
-            return NextResponse.redirect(new URL('/dashboard',req.url));
-        }else{
-            return NextResponse.next();
-        }
-    }
+    //     const encodedToken = req.cookies.get('token');
+    //     if(encodedToken){
+    //         return NextResponse.redirect(new URL('/dashboard',req.url));
+    //     }
+    // }
     
 }

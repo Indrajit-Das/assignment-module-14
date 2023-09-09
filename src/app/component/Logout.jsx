@@ -1,15 +1,19 @@
 "use client";
 import { useRouter } from 'next/navigation';
-import { deleteCookie } from '@/lib/cookie';
 
-const logout = () => {
+const Logout = async()=> {
     const router = useRouter();
     // handle logout
-    const handleLogout = async() => {
+    const handleLogout = async()=> {
         const config = {method:'DELETE'};
-        const deleteCookie=await fetch('api/login',config); 
+        const cookieDeleteRes = await fetch('api/login',config);
+        let cookie =await cookieDeleteRes.json(); 
+       
         // Redirect to the login page after logout
-        router.replace('/login');
+        if(cookie.status==true){
+            router.replace('/login');
+        }
+        
     };
     return (
         <div>
@@ -18,4 +22,4 @@ const logout = () => {
     );
 };
 
-export default logout;
+export default Logout;

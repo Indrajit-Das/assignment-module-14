@@ -1,6 +1,6 @@
 import { headers } from 'next/headers';
 import Logout from '../component/Logout';
-const Dashboard = async() => {
+const Dashboard =()=> {
     // headers data 
     const headerList = headers();
     const email = headerList.get('email');
@@ -11,7 +11,7 @@ const Dashboard = async() => {
             <h1>{name}</h1>
             <h1>{email}</h1>
             <h1>Dashboard</h1>
-            <Logout />
+            <Logout/>
         </div>
     );
 };
