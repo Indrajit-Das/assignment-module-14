@@ -26,7 +26,7 @@ export async function middleware(req,res,next){
     // checking if authenticated
     if(req.nextUrl.pathname.startsWith('/login'||'/register'||'/')){
        
-        const encodedToken = req.cookies.get('token');
+        const encodedToken = req?.cookies?.get('token');
         if(encodedToken){
             return NextResponse.redirect(new URL('/dashboard',req.url));
         }else{
