@@ -24,7 +24,7 @@ export async function middleware(req,res,next){
         
     }
     // checking if authenticated
-    if(req.nextUrl.pathname.startsWith('/login'||'/register'||'/')){
+    if((req.nextUrl.pathname.startsWith('/login'))||(req.nextUrl.pathname.startsWith('/register')||(req.nextUrl.pathname.startsWith('/')))){
        
         const encodedToken = req?.cookies?.get('token');
         if(encodedToken){

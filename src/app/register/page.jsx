@@ -60,7 +60,7 @@ const Register = () => {
      
       const res = await response.json();
       if(res['status']===true){
-        router.replace(callbackurl);
+        router.push(callbackurl);
       }else{
         alert(res['message']);
       }
