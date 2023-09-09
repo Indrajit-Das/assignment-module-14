@@ -4,15 +4,9 @@ import { decodeToken } from './lib/token';
 
 export async function middleware(req,res,next){
     if(req.nextUrl.pathname.startsWith('/dashboard')){
-        console.log("inside");
         try{
             // token verification
-            // const reqHeaders = new Headers(req.headers);
-            // const encodedToken = reqHeaders.get('token');
-            // const token =await decodeToken(encodedToken);
-            console.log("inside try middleware");
             const encodedToken = req.cookies.get('token');
-           
             const reqHeaders = new Headers(req.headers);
             
             const token =await decodeToken(encodedToken['value']);
@@ -28,6 +22,18 @@ export async function middleware(req,res,next){
             return NextResponse.redirect(new URL('/login',req.url))
         }
         
+    }
+    if(req.nextUrl.pathname.startsWith('/login')){
+        try{
+            const encodedToken = req.cookies.get('token');
+            if(encodedToken){
+                return NextResponse.redirect(new URL('/dashboard',req.url));
+            }else{
+                return NextResponse.next();
+            }
+        }catch(e){
+            return NextResponse.redirect(new URL('/login',req.url)); 
+        }
     }
     
 }
