@@ -25,15 +25,12 @@ export async function middleware(req,res,next){
     }
     // checking if authenticated
     if(req.nextUrl.pathname.startsWith('/login'||'/register'||'/')){
-        try{
-            const encodedToken = req.cookies.get('token');
-            if(encodedToken){
-                return NextResponse.redirect(new URL('/dashboard',req.url));
-            }else{
-                return NextResponse.next();
-            }
-        }catch(e){
-            return NextResponse.redirect(new URL('/login',req.url)); 
+       
+        const encodedToken = req.cookies.get('token');
+        if(encodedToken){
+            return NextResponse.redirect(new URL('/dashboard',req.url));
+        }else{
+            return NextResponse.next();
         }
     }
     
