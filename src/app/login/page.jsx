@@ -47,7 +47,8 @@ const Login = () => {
       const response = await fetch('api/login',config); 
      
       const res = await response.json();
-      if(res['status']===true){
+      console.log(res['status']);
+      if(res['status']==true){
         router.replace(callbackurl);
       }else{
         alert(res['message']);
