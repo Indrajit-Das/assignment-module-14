@@ -6,7 +6,7 @@ export async function generateToken(payload){
     let token = await new SignJWT(payload)
             .setProtectedHeader({alg:'HS256'})
             .setIssuedAt()
-            .setIssuer("https://assignment-module-14-psi.vercel.app")
+            .setIssuer("https://assignment-module-14-3dzzvxhd5-indrojit70.vercel.app")
             .setExpirationTime('2h')
             .sign(secretKey);
 
